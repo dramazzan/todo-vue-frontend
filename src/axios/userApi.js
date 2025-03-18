@@ -60,11 +60,13 @@ const getUserData = async () => {
       },
     });
 
-    return {success: true , data: response.data};
+    return {success: true , data: response.data.user};
   } catch (error) {
     return handleApiError(error)
   }
 };
+
+
 
 
 const handleApiError = (error) => {
@@ -81,6 +83,7 @@ const handleApiError = (error) => {
     };
   }
 };
+
 
 
 

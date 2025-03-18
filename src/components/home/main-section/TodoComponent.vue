@@ -19,7 +19,7 @@ const getUserData = async()=>{
         console.log(response.data)
         if(response.success){
             user.value = response.data 
-            userId.value = response.data.user._id
+            userId.value = response.data._id
         }else{
             console.log(response)
         }
@@ -28,7 +28,6 @@ const getUserData = async()=>{
     }
 }
 
-// Fetch cases list from API
 const getCasesList = async () => {
     loading.value = true;
     error.value = null;
@@ -36,18 +35,19 @@ const getCasesList = async () => {
     try {
         const response = await api.getCaseList();
         console.log('Cases response:', response);
-        
-        if (response.success) {
-            // Format the data to match our app's structure and filter by current user
+        if(response){
+           if (response.success) {
             todos.value = Array.isArray(response.data) 
                 ? response.data
-                    .filter(caseItem => caseItem.userId === userId.value) // Filter cases by current user ID
+                    .filter(caseItem => caseItem.userId === userId.value) 
                     .map(formatCaseFromAPI) 
                 : [];
         } else {
             error.value = response.message || 'Failed to fetch cases';
             console.error(error.value);
         }
+        }
+       
     } catch (err) {
         error.value = 'An unexpected error occurred';
         console.error('API error:', err);
@@ -56,7 +56,6 @@ const getCasesList = async () => {
     }
 };
 
-// Format case from API to match our app's structure
 const formatCaseFromAPI = (caseItem) => {
     return {
         id: caseItem._id,
@@ -71,14 +70,11 @@ const formatCaseFromAPI = (caseItem) => {
         updatedAt: new Date(caseItem.updatedAt)
     };
 };
-
-// Load initial data on component mount
 onMounted(() => {
     getCasesList();
     getUserData();
 });
 
-// Filter todos based on active filter
 const filteredTodos = computed(() => {
   if (activeFilter.value === "all") {
     return todos.value;

@@ -34,13 +34,12 @@ const api = {
           Authorization: `Bearer ${token}`,
         },
       });
-      return { success: true, data: response.data.cases };
+      
+        return { success: true, data: response.data.cases };
+      
+     
     } catch (error) {
-      console.error("Error fetching cases:", error);
-      return {
-        success: false,
-        message: error.response?.data?.message || "Failed to fetch cases",
-      };
+      handleApiError(error)
     }
   },
 
@@ -50,11 +49,7 @@ const api = {
       const response = await apiClient.get(`/cases/case/${id}`);
       return { success: true, selectedCase: response.data.selectedCase };
     } catch (error) {
-      console.error(`Error fetching case ${id}:`, error);
-      return {
-        success: false,
-        message: error.response?.data?.message || "Failed to fetch case",
-      };
+      handleApiError(error)
     }
   },
 
@@ -64,12 +59,7 @@ const api = {
       const response = await apiClient.post("/cases/create", caseData);
       return response.data; // Already contains { success: true, savedCase: {...} }
     } catch (error) {
-      console.error("Error creating case:", error);
-      return {
-        success: false,
-        message: error.response?.data?.message || "Failed to create case",
-        errors: error.response?.data?.errors,
-      };
+      handleApiError(error)
     }
   },
 
@@ -79,12 +69,7 @@ const api = {
       const response = await apiClient.put(`/cases/update/${id}`, caseData);
       return response.data; // Contains { success: true, message: '...', updateCase: {...} }
     } catch (error) {
-      console.error(`Error updating case ${id}:`, error);
-      return {
-        success: false,
-        message: error.response?.data?.message || "Failed to update case",
-        errors: error.response?.data?.errors,
-      };
+      handleApiError(error)
     }
   },
 
@@ -94,11 +79,7 @@ const api = {
       const response = await apiClient.delete(`/cases/delete/${id}`);
       return response.data; // Contains { success: true, message: '...', deletedCase: {...} }
     } catch (error) {
-      console.error(`Error deleting case ${id}:`, error);
-      return {
-        success: false,
-        message: error.response?.data?.message || "Failed to delete case",
-      };
+      handleApiError(error)
     }
   },
 
@@ -110,13 +91,25 @@ const api = {
       );
       return response.data; // Contains { success: true, cases: [...] }
     } catch (error) {
-      console.error("Error searching cases:", error);
-      return {
-        success: false,
-        message: error.response?.data?.message || "Failed to search cases",
-      };
+      handleApiError(error)
     }
   },
+};
+
+
+const handleApiError = (error) => {
+  if (error.response) {
+    return {
+      success: false,
+      data: error.response.data,
+    };
+  } else {
+    return {
+      success: false,
+      message: "Server is not responding",
+      errors: {},
+    };
+  }
 };
 
 export default api;
