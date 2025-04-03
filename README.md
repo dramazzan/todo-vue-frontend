@@ -1,29 +1,118 @@
-# todovue
+# Todo Vue Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+Фронтенд приложение для управления задачами, разработанное с использованием Vue.js.
 
-## Recommended IDE Setup
+## Описание
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Todo Vue Frontend - это современное одностраничное приложение (SPA) для управления задачами, которое позволяет пользователям создавать, редактировать, удалять и отслеживать статус своих задач. Приложение разработано с использованием фреймворка Vue.js.
 
-## Customize configuration
+## Функциональность
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Создание новых задач с заголовком, описанием и сроком выполнения
+- Редактирование существующих задач
+- Отметка задач как выполненных
+- Удаление задач
+- Фильтрация задач по статусу (все, активные, выполненные)
+- Сортировка задач по различным параметрам
+- Интуитивно понятный пользовательский интерфейс
 
-## Project Setup
+## Технологии
 
-```sh
+- Vue.js 3
+- Vue Router
+- Vuex
+- Axios
+- HTML5
+- CSS3/SCSS
+- JavaScript (ES6+)
+
+## Установка и запуск
+
+### Предварительные требования
+
+- Node.js (версия 14 или выше)
+- npm (или yarn)
+
+### Установка
+
+1. Клонируйте репозиторий:
+```
+git clone https://github.com/dramazzan/todo-vue-frontend.git
+```
+
+2. Перейдите в директорию проекта:
+```
+cd todo-vue-frontend
+```
+
+3. Установите зависимости:
+```
 npm install
 ```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
+или
+```
+yarn install
 ```
 
-### Compile and Minify for Production
+### Запуск для разработки
 
-```sh
+```
+npm run serve
+```
+или
+```
+yarn serve
+```
+
+После запуска приложение будет доступно по адресу: `http://localhost:8080/`
+
+### Сборка для продакшена
+
+```
 npm run build
 ```
+или
+```
+yarn build
+```
+
+## Структура проекта
+
+```
+todo-vue-frontend/
+├── public/              # Статические файлы
+├── src/                 # Исходный код
+│   ├── assets/          # Изображения, стили и прочие ресурсы
+│   ├── components/      # Vue компоненты
+│   ├── router/          # Настройки маршрутизации
+│   ├── store/           # Vuex хранилище
+│   ├── views/           # Компоненты страниц
+│   ├── App.vue          # Корневой компонент
+│   └── main.js          # Точка входа
+├── .gitignore           # Игнорируемые Git файлы
+├── babel.config.js      # Конфигурация Babel
+├── package.json         # Зависимости и скрипты
+└── README.md            # Документация проекта
+```
+
+## API Интеграция
+
+Приложение взаимодействует с бэкенд API для сохранения и получения данных. Убедитесь, что бэкенд сервер запущен и доступен.
+
+## Вклад в проект
+
+1. Форкните репозиторий
+2. Создайте ветку для вашей функциональности (`git checkout -b feature/amazing-feature`)
+3. Зафиксируйте изменения (`git commit -m 'Add some amazing feature'`)
+4. Отправьте изменения в ветку (`git push origin feature/amazing-feature`)
+5. Откройте Pull Request
+
+## Лицензия
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Контакты
+
+Dramazzan - [GitHub](https://github.com/dramazzan)
+
+Ссылка на проект: [https://github.com/dramazzan/todo-vue-frontend](https://github.com/dramazzan/todo-vue-frontend)
